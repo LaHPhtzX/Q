@@ -2572,12 +2572,16 @@ task.spawn(function()
     end)
 
 
-local Toggle2 = Farm:AddToggle({
+local Toggle1 = Farm:AddToggle({
   Name = "Farm Level",
-  Default = true
+  Description = "Farm Level",
+  Default = false
+        CallBack = (function (Value)
+       _G.AutoFarm = Value
+        StopTween(_G.AutoFarm)
 })
 
-spawn(function()
+        spawn(function()
   while wait() do
       if FarmMode == "Normal" and _G.AutoFarm then
           pcall(function()
@@ -2750,4 +2754,4 @@ spawn(function()
           end)
       end
   end
-end)
+end
